@@ -14,12 +14,7 @@ function Iout = nneig(Iin, sx, sy)
 
   for i = 1 : size(Iout, 1)
     for j = 1 : size(Iout, 2)
-      VCoord = round(TsInv * [i - 1; j - 1; 1] + [1; 1; 0];
-      if VCoord(1, 1) <= size(Iin, 1) && VCoord(2, 1) <= size(Iin, 2)
-        Iout(i, j) = Iin(VCoord(1, 1), VCoord(2, 1));
-      else
-        % i, j, size(Iout)
-      endif
+      # TODO: write the algorithm.
     endfor
   endfor
 endfunction
