@@ -8,7 +8,7 @@
 #
 
 function imageSaida = corrigeImagem(imagemEntrada)
-  # Cria a matriz (u,v) usando os pontos da imagem original.
+  # Cria a matriz (u, v) usando os pontos da imagem original.
   MatOrig = [ 71, 184;  117, 146; 44, 264;
               435, 446; 550, 510; 620, 202 ];
 
