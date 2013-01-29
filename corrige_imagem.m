@@ -8,13 +8,22 @@
 #
 
 function imageSaida = corrigeImagem(imagemEntrada)
-  # Cria a matriz (u, v) usando os pontos da imagem original.
-  MatOrig = [ 71, 184;  117, 146; 44, 264;
-              435, 446; 550, 510; 620, 202 ];
+  # Cria a matriz (r, s) que indica o sistem da imagem distorcida.
+  MatDist = [ 56, 295;
+              83, 264;
+              45, 348;
+              324, 459;
+              426, 508;
+              568, 245 ];
 
-  # Cria a matriz (r, s) usando os pontos da imagem distorcida.
-  MatDist = [ 56, 295;  83, 264;  45, 348;
-              324, 459; 426, 508; 568, 245 ];
+  # Cria a matriz (u, v) que indica o sistema da imagem de saída (sem distorção).
+  MatOrig = [ 71, 184;
+              117, 146;
+              44, 264;
+              435, 446;
+              550, 510;
+              620, 202 ];
+
 
   # Inicializa a matriz A.
   A = [ MatOrig(1, 1), MatOrig(1, 2), 1, 0, 0, 0, - MatOrig(1, 1) * MatDist(1, 1), - MatOrig(1, 2) * MatDist(1, 1);
@@ -75,4 +84,4 @@ function imageSaida = corrigeImagem(imagemEntrada)
        endif
      endfor
    endfor
-endfunction;
+endfunction
