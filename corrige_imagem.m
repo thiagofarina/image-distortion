@@ -50,8 +50,8 @@ function imageSaida = corrigeImagem(imagemEntrada)
   # Calculo pelo método dos Mínimos Quadrados.
   # x = (At * A) -¹ * At * L
 
-  matrizAux = A' * A;
-  X = inv(matrizAux) * A' * L;
+  MatAux = A' * A;
+  X = inv(MatAux) * A' * L;
 
   T(1, 1) = X(1, 1);
   T(1, 2) = X(2, 1);
@@ -72,13 +72,13 @@ function imageSaida = corrigeImagem(imagemEntrada)
   for linha = 1: numLinhas
     for coluna = 1: numColunas
        aux = T * [linha; coluna; 1];
-       result = [aux(1, 1, 1) / aux(3, 1, 1);
+       resultado = [aux(1, 1, 1) / aux(3, 1, 1);
        aux(2, 1, 1) / aux(3, 1, 1);
        aux(3, 1, 1) / aux(3, 1, 1)];
-       # Retorna o inteiro próximo de result(1, 1).
-       w = round(result(1, 1));
-       # Retorna o inteiro próximo de result(2, 1).
-       z  = round(result(2, 1));
+       # Retorna o inteiro próximo de resultado(1, 1).
+       w = round(resultado(1, 1));
+       # Retorna o inteiro próximo de resultado(2, 1).
+       z  = round(resultado(2, 1));
        if ((w >= 1) && (z >= 1) && (w <= numLinhas) && (z <= numColunas))
          imagemSaida(linha, coluna, 1) = imagemEntrada(w, z, 1);
        endif
