@@ -1,3 +1,18 @@
+% Instruções:
+%
+% $ octave
+% octave> source("foo2.m");
+% octave> img = imread("imagem_torta.jpg");
+% octave> img1 = AlteraImg(img);
+% Output das variáveis:
+% .....
+% octave> imwrite(img1, "imagem_correta.jpg");
+%
+
+% Parametros:
+% ImgEntraga: Imagem distorcida, que você deseja corrigir.
+% ImgSaida: Retorna a imagem de saída corrigida.
+%
 function ImgSaida = AlteraImg(ImgEntrada)
   % Neste passo é realizado a criação da matriz (r, s). Nesta se utiliza a
   % imagem distorcida.
@@ -60,7 +75,7 @@ function ImgSaida = AlteraImg(ImgEntrada)
   T(3,2) = X(8,1);
   T(3,3) = 1;
 
-  % Mostra no console a lista variáveis e seus valores correspondentes.
+  % Mostra no console a lista de variáveis e seus valores correspondentes.
   whos
   numLinhas = rows(ImgEntrada)
   numColunas = columns(ImgEntrada)
