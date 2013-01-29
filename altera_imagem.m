@@ -1,14 +1,15 @@
 #
 # Exemplo de como rodar o programa:
 #
-# source("corrige_imagem.m");
+# source("altera_imagem.m");
 # imagemTorta = imread("imagem_torta.jpg");
 # imagemNormal = corrigeImagem(imagemTorta);
 # imwrite(imagemNormal, "imagem_normal.jpg");
 #
 
-function imageSaida = corrigeImagem(imagemEntrada)
-  # Cria a matriz (r, s) que indica o sistem da imagem distorcida.
+function imageSaida = AlteraImg(imagemEntrada)
+  # Neste passo é realizado a criação da matriz (r, s). Nesta se utiliza a
+  # imagem distorcida.
   MatDist = [ 56, 295;
               83, 264;
               45, 348;
@@ -16,7 +17,8 @@ function imageSaida = corrigeImagem(imagemEntrada)
               426, 508;
               568, 245 ];
 
-  # Cria a matriz (u, v) que indica o sistema da imagem de saída (sem distorção).
+  # Neste passo é realizado a criação da matriz (u, s). Nesta se utiliza a
+  # imagem de saída (sem distorção).
   MatOrig = [ 71, 184;
               117, 146;
               44, 264;
@@ -25,7 +27,7 @@ function imageSaida = corrigeImagem(imagemEntrada)
               620, 202 ];
 
 
-  # Inicializa a matriz A.
+  # Neste passo é realizado a criação da matriz A.
   A = [ MatOrig(1, 1), MatOrig(1, 2), 1, 0, 0, 0, - MatOrig(1, 1) * MatDist(1, 1), - MatOrig(1, 2) * MatDist(1, 1);
         0, 0, 0, MatOrig(1, 1), MatOrig(1, 2), 1, - MatOrig(1, 1) * MatDist(1, 2), - MatOrig(1, 2) * MatDist(1, 2);
         MatOrig(2, 1), MatOrig(2, 2), 1, 0, 0, 0, - MatOrig(2, 1) * MatDist(2, 1), - MatOrig(2, 2) * MatDist(2, 1);
@@ -39,7 +41,7 @@ function imageSaida = corrigeImagem(imagemEntrada)
         MatOrig(6, 1), MatOrig(6, 2), 1, 0, 0, 0, - MatOrig(6, 1) * MatDist(6, 1), - MatOrig(6, 2) * MatDist(6, 1);
         0, 0, 0, MatOrig(6, 1), MatOrig(6, 2), 1, - MatOrig(6, 1) * MatDist(6, 2), - MatOrig(6, 2) * MatDist(6, 2)];
 
-  # Cria a matriz L a partiz dos pontos da MatDist.
+  # Neste passo é realizado a criação da matriz L a partiz dos pontos da MatDist.
   L = [ MatDist(1, 1), MatDist(1, 2),
         MatDist(2, 1), MatDist(2, 2),
         MatDist(3, 1), MatDist(3, 2),
@@ -63,8 +65,6 @@ function imageSaida = corrigeImagem(imagemEntrada)
   T(3, 2) = X(8, 1);
   T(3, 3) = 1;
 
-  # Lista variáveis definidas correspondente aos padrões dados.
-  whos
   numLinhas = rows(imagemEntrada)
   numColunas = columns(imagemEntrada)
 
