@@ -17,7 +17,7 @@ function imageSaida = AlteraImg(imagemEntrada)
               426, 508;
               568, 245 ];
 
-  # Neste passo é realizado a criação da matriz (u, s). Nesta se utiliza a
+  # Neste passo é realizado a criação da matriz (u, v). Nesta se utiliza a
   # imagem de saída (sem distorção).
   MatOrig = [ 71, 184;
               117, 146;
@@ -28,18 +28,19 @@ function imageSaida = AlteraImg(imagemEntrada)
 
 
   # Neste passo é realizado a criação da matriz A.
-  A = [ MatOrig(1, 1), MatOrig(1, 2), 1, 0, 0, 0, - MatOrig(1, 1) * MatDist(1, 1), - MatOrig(1, 2) * MatDist(1, 1);
-        0, 0, 0, MatOrig(1, 1), MatOrig(1, 2), 1, - MatOrig(1, 1) * MatDist(1, 2), - MatOrig(1, 2) * MatDist(1, 2);
-        MatOrig(2, 1), MatOrig(2, 2), 1, 0, 0, 0, - MatOrig(2, 1) * MatDist(2, 1), - MatOrig(2, 2) * MatDist(2, 1);
-        0, 0, 0, MatOrig(2, 1), MatOrig(2, 2), 1, - MatOrig(2, 1) * MatDist(2, 2), - MatOrig(2, 2) * MatDist(2, 2);
-        MatOrig(3, 1), MatOrig(3, 2), 1, 0, 0, 0, - MatOrig(3, 1) * MatDist(3, 1), - MatOrig(3, 2) * MatDist(3, 1);
-        0, 0, 0, MatOrig(3, 1), MatOrig(3, 2), 1, - MatOrig(3, 1) * MatDist(3, 2), - MatOrig(3, 2) * MatDist(3, 2);
-        MatOrig(4, 1), MatOrig(4, 2), 1, 0, 0, 0, - MatOrig(4, 1) * MatDist(4, 1), - MatOrig(4, 2) * MatDist(4, 1);
-        0, 0, 0, MatOrig(4, 1), MatOrig(4, 2), 1, - MatOrig(4, 1) * MatDist(4, 2), - MatOrig(4, 2) * MatDist(4, 2);
-        MatOrig(5, 1), MatOrig(5, 2), 1, 0, 0, 0, - MatOrig(5, 1) * MatDist(5, 1), - MatOrig(5, 2) * MatDist(5, 1);
-        0, 0, 0, MatOrig(5, 1), MatOrig(5, 2), 1, - MatOrig(5, 1) * MatDist(5, 2), - MatOrig(5, 2) * MatDist(5, 2);
-        MatOrig(6, 1), MatOrig(6, 2), 1, 0, 0, 0, - MatOrig(6, 1) * MatDist(6, 1), - MatOrig(6, 2) * MatDist(6, 1);
-        0, 0, 0, MatOrig(6, 1), MatOrig(6, 2), 1, - MatOrig(6, 1) * MatDist(6, 2), - MatOrig(6, 2) * MatDist(6, 2)];
+A = [MatOrig(1, 1), MatOrig(1, 2), 1, 0, 0, 0, - MatOrig(1, 1) * MatDist(1, 1), - MatOrig(1, 2) * MatDist(1, 1);
+0, 0, 0, MatOrig(1, 1), MatOrig(1, 2), 1, - MatOrig(1, 1) * MatDist(1, 2), - MatOrig(1, 2) * MatDist(1, 2);
+MatOrig(2, 1), MatOrig(2, 2), 1, 0, 0, 0, - MatOrig(2, 1) * MatDist(2, 1), - MatOrig(2, 2) * MatDist(2, 1);
+0, 0, 0, MatOrig(2, 1), MatOrig(2, 2), 1, - MatOrig(2, 1) * MatDist(2, 2), - MatOrig(2, 2) * MatDist(2, 2);
+MatOrig(3, 1), MatOrig(3, 2), 1, 0, 0, 0, - MatOrig(3, 1) * MatDist(3, 1), - MatOrig(3, 2) * MatDist(3, 1);
+0, 0, 0, MatOrig(3, 1), MatOrig(3, 2), 1, - MatOrig(3, 1) * MatDist(3, 2), - MatOrig(3, 2) * MatDist(3, 2);
+MatOrig(4, 1), MatOrig(4, 2), 1, 0, 0, 0, - MatOrig(4, 1) * MatDist(4, 1), - MatOrig(4, 2) * MatDist(4, 1);
+0, 0, 0, MatOrig(4, 1), MatOrig(4, 2), 1, - MatOrig(4, 1) * MatDist(4, 2), - MatOrig(4, 2) * MatDist(4, 2);
+MatOrig(5, 1), MatOrig(5, 2), 1, 0, 0, 0, - MatOrig(5, 1) * MatDist(5, 1), - MatOrig(5, 2) * MatDist(5, 1);
+0, 0, 0, MatOrig(5, 1), MatOrig(5, 2), 1, - MatOrig(5, 1) * MatDist(5, 2), - MatOrig(5, 2) * MatDist(5, 2);
+MatOrig(6, 1), MatOrig(6, 2), 1, 0, 0, 0, - MatOrig(6, 1) * MatDist(6, 1), - MatOrig(6, 2) * MatDist(6, 1);
+0, 0, 0, MatOrig(6, 1), MatOrig(6, 2), 1, - MatOrig(6, 1) * MatDist(6, 2), - MatOrig(6, 2) * MatDist(6, 2)];
+
 
   # Neste passo é realizado a criação da matriz L a partiz dos pontos da MatDist.
   L = [ MatDist(1, 1), MatDist(1, 2),
@@ -65,6 +66,7 @@ function imageSaida = AlteraImg(imagemEntrada)
   T(3, 2) = X(8, 1);
   T(3, 3) = 1;
 
+  whos
   numLinhas = rows(imagemEntrada)
   numColunas = columns(imagemEntrada)
 
