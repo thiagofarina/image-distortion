@@ -56,12 +56,12 @@ function imageSaida = corrigeImagem(imagemEntrada)
 
   # Lista variáveis definidas correspondente aos padrões dados.
   whos
-  size(imagemEntrada, 1)
-  size(imagemEntrada, 2)
+  numLinhas = rows(imagemEntrada)
+  numColunas = columns(imagemEntrada)
 
   # Calcula os novos pontos na |imagemSaida|.
-  for linha = 1: size(imagemEntrada, 1)
-    for coluna = 1: size(imagemEntrada, 2)
+  for linha = 1: numLinhas
+    for coluna = 1: numColunas
        aux = T * [linha; coluna; 1];
        result = [aux(1, 1, 1) / aux(3, 1, 1);
        aux(2, 1, 1) / aux(3, 1, 1);
@@ -70,7 +70,7 @@ function imageSaida = corrigeImagem(imagemEntrada)
        w = round(result(1, 1));
        # Retorna o inteiro próximo de result(2, 1).
        z  = round(result(2, 1));
-       if ((w >= 1) && (z >= 1) && (w <= size(imagemEntrada, 1)) && (z <= size(imagemEntrada, 2)))
+       if ((w >= 1) && (z >= 1) && (w <= numLinhas) && (z <= numColunas))
          imagemSaida(linha, coluna, 1) = imagemEntrada(w, z, 1);
        endif
      endfor
